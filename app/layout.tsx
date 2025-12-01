@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import Header from "./components/header";
+import { ThemeProvider } from "next-themes";
+import Sidebar from "./components/sidebar";
+import Providers from "./redux/providers";
+import SidebarToggle from "./components/sidebar/sidebarToggle";
 
 const geistJakarta = Plus_Jakarta_Sans({
   variable: "--font-geist-jakarta",
@@ -19,8 +24,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistJakarta.variable} antialiased`}>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${geistJakarta.variable} antialiased`}>
+        <Providers>
+          <ThemeProvider attribute="class" defaultTheme="light">
+            <Sidebar />
+            <SidebarToggle />
+            <main className="grow">
+              <Header />
+              {children}
+            </main>
+          </ThemeProvider>
+        </Providers>
+      </body>
     </html>
   );
 }

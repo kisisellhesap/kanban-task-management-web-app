@@ -1,15 +1,16 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-VividPurple: #635fc7;
-  --color-SoftLavender: #a8a4ff;
+  --color-MainPurple: #635fc7; /* isim düzeltildi */
+  --color-HoverMainPurple: #a8a4ff; /* isim düzeltildi */
   --color-DeepMidnight: #000112;
-  --color-CharcoalGray: #20212c;
-  --color-Gunmetal: #2b2c37;
-  --color-SteelSlate: #3e3f4e;
-  --color-CoolGray: #828fa3;
-  --color-PaleIce: #e4ebfa;
-  --color-SnowMist: #f4f7fd;
+  --color-VeryDarkGrey: #20212c; /* isim düzeltildi */
+  --color-DarkGrey: #2b2c37; /* isim düzeltildi */
+  --color-LinesDark: #3e3f4e; /* isim düzeltildi */
+  --color-MediumGrey: #828fa3; /* isim düzeltildi */
+  --color-Lines: #e4ebfa; /* isim düzeltildi */
+  --color-LightGreyBG: #f4f7fd; /* isim düzeltildi */
   --color-White: #ffffff;
   --color-StrongRed: #ea5555;
   --color-SoftCoral: #ff9898;
@@ -18,7 +19,10 @@
 
 @layer base {
   body {
-    @apply font-jakarta;
+    @apply font-jakarta flex min-h-screen;
+  }
+  button {
+    @apply cursor-pointer;
   }
 }
 
