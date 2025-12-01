@@ -30,7 +30,7 @@ export default function RootLayout({
           <ThemeProvider attribute="class" defaultTheme="light">
             <Sidebar />
             <SidebarToggle />
-            <main className="grow">
+            <main className="grow  h-[120vh]">
               <Header />
               {children}
             </main>

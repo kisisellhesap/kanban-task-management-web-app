@@ -18,13 +18,14 @@ const Sidebar = () => {
       variants={sidebarVariant}
       initial={"closed"}
       animate={isClose ? "closed" : "open"}
-      className="bg-White w-75 dark:bg-DarkGrey border-r border-Lines dark:border-LinesDark py-8 flex flex-col max-lg:fixed max-lg:left-0 max-lg:h-full"
+      className="bg-White w-75 sticky left-0 top-0 h-screen dark:bg-DarkGrey border-r border-Lines dark:border-LinesDark py-8 flex flex-col max-lg:fixed max-lg:left-0 max-lg:h-full "
     >
+      {/* */}
       <motion.div
         variants={sidebarChildVariant}
         initial={"hidden"}
         animate={isClose ? "hidden" : "visible"}
-        className="flex flex-col h-full"
+        className="flex flex-col h-full bg-red-300"
       >
         <Logo />
 
