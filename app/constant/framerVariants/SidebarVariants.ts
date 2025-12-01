@@ -13,12 +13,14 @@ export const sidebarVariant = {
 export const sidebarChildVariant = {
   visible: {
     opacity: 1,
+    display: "flex",
     transition: {
       delay: 0.2,
     },
   },
   hidden: {
     opacity: 0,
+    display: "none",
   },
 };
 
