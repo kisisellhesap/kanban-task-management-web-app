@@ -23,7 +23,7 @@ const SidebarToggle = () => {
       whileHover={
         isClose ? "shortHover" : theme === "dark" ? "darkHover" : "longHover"
       }
-      className="max-w-[276px] flex items-center gap-4 py-4 rounded-r-full fixed left-0 bottom-12"
+      className="max-w-[276px] flex items-center gap-4 py-4 rounded-r-full fixed left-0 bottom-12  z-10"
       onClick={() => dispatch(toggleSideBar())}
     >
       <AnimatePresence mode="wait" initial={false}>

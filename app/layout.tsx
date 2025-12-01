@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-import Header from "./components/header";
+import Header from "./components/header/index";
 import { ThemeProvider } from "next-themes";
 import Sidebar from "./components/sidebar";
 import Providers from "./redux/providers";
@@ -28,11 +28,11 @@ export default function RootLayout({
       <body className={`${geistJakarta.variable} antialiased`}>
         <Providers>
           <ThemeProvider attribute="class" defaultTheme="light">
-            <Sidebar />
+            <Header />
             <SidebarToggle />
-            <main className="grow  h-[120vh]">
-              <Header />
-              {children}
+            <main className=" flex h-[calc(100vh-83.83px)]">
+              <Sidebar />
+              <div className="">{children}</div>
             </main>
           </ThemeProvider>
         </Providers>

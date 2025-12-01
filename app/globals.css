@@ -11,15 +11,15 @@
   --color-MediumGrey: #828fa3; /* isim düzeltildi */
   --color-Lines: #e4ebfa; /* isim düzeltildi */
   --color-LightGreyBG: #f4f7fd; /* isim düzeltildi */
-  --color-White: #ffffff;
-  --color-StrongRed: #ea5555;
-  --color-SoftCoral: #ff9898;
+  --color-White: #ffffff; /* isim düzeltildi */
+  --color-Red: #ea5555; /* isim düzeltildi */
+  --color-HoverRed: #ff9898; /* isim düzeltildi */
   --font-jakarta: "Plus-Jakarta-Sans", sans-serif;
 }
 
 @layer base {
   body {
-    @apply font-jakarta flex min-h-screen;
+    @apply font-jakarta flex flex-col;
   }
   button {
     @apply cursor-pointer;

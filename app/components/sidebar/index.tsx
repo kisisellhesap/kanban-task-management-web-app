@@ -1,7 +1,6 @@
 "use client";
 import { TbLayoutBoardSplit } from "react-icons/tb";
 import ThemeToggle from "./themeToggle";
-import Logo from "./logo";
 import Boards from "./boards";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/redux/store";
@@ -18,19 +17,16 @@ const Sidebar = () => {
       variants={sidebarVariant}
       initial={"closed"}
       animate={isClose ? "closed" : "open"}
-      className="bg-White w-75 sticky left-0 top-0 h-screen dark:bg-DarkGrey border-r border-Lines dark:border-LinesDark py-8 flex flex-col max-lg:fixed max-lg:left-0 max-lg:h-full "
+      className=" bg-White w-75 h-[calc(100vh-83.83px)]  dark:bg-DarkGrey border-r border-Lines dark:border-LinesDark py-8 flex flex-col max-lg:fixed max-lg:left-0"
     >
-      {/* */}
       <motion.div
         variants={sidebarChildVariant}
         initial={"hidden"}
         animate={isClose ? "hidden" : "visible"}
-        className="flex flex-col h-full bg-red-300"
+        className="flex flex-col h-screen "
       >
-        <Logo />
-
         <Boards />
-        <button className=" max-w-[276px] flex items-center gap-4 px-8 py-4 rounded-r-full text-MainPurple">
+        <button className=" max-w-[299px] flex items-center gap-4 px-8 py-4 rounded-r-full text-MainPurple">
           <TbLayoutBoardSplit className="w-6 h-6" />
           <span className=" heading-m ">+ Create New Board</span>
         </button>
