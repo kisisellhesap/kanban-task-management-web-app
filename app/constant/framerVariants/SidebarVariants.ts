@@ -34,7 +34,7 @@ export const sidebarToggleVariant = {
   },
   long: {
     width: 276,
-    backgroundColor: "transparent",
+    backgroundColor: "none",
     color: "#828fa3",
     paddingLeft: 32,
     paddingRight: 32,

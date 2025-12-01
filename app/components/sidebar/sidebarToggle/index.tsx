@@ -14,7 +14,6 @@ const SidebarToggle = () => {
   const { isClose } = useSelector((store: RootState) => store.sidebarReducer);
   const { theme } = useTheme();
   const dispatch = useDispatch<AppDispatch>();
-  console.log(isClose);
   return (
     <motion.button
       variants={sidebarToggleVariant}
