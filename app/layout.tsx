@@ -32,7 +32,7 @@ export default function RootLayout({
             <SidebarToggle />
             <main className=" flex h-[calc(100vh-83.83px)]">
               <Sidebar />
-              <div className="">{children}</div>
+              <div className="flex-1">{children}</div>
             </main>
           </ThemeProvider>
         </Providers>

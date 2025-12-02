@@ -26,7 +26,7 @@ const Sidebar = () => {
         className="flex flex-col h-screen "
       >
         <Boards />
-        <button className=" max-w-[299px] flex items-center gap-4 px-8 py-4 rounded-r-full text-MainPurple">
+        <button className=" max-w-[276px] flex items-center gap-4 px-8 py-4 rounded-r-full text-MainPurple">
           <TbLayoutBoardSplit className="w-6 h-6" />
           <span className=" heading-m ">+ Create New Board</span>
         </button>

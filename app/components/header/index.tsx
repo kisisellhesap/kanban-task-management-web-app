@@ -3,8 +3,10 @@ import { useSelector } from "react-redux";
 import Logo from "./logo";
 import { RootState } from "@/app/redux/store";
 import Button from "../button";
-import { BsThreeDotsVertical } from "react-icons/bs";
 import { useMiniScreen } from "@/app/hooks/useBreakPointScreen";
+import { FaPlus } from "react-icons/fa6";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import ThreedotButton from "../threedotButton";
 
 const Header = () => {
   const { isClose } = useSelector((store: RootState) => store.sidebarReducer);
@@ -34,10 +36,39 @@ const Header = () => {
           Platform Launch
         </h1>
         <div className=" flex items-center justify-end gap-5 w-full">
-          <Button type="primary" size="L" text="+ Add New Task" width="164px" />
-          <button>
+          <Button
+            type="primary"
+            size="L"
+            text="+ Add New Task"
+            width="164px"
+            icon={<FaPlus className="w-3 h-3 hidden max-md:block" />}
+          />
+
+          {/* <button>
             <BsThreeDotsVertical className="text-MediumGrey w-8 h-16" />
-          </button>
+          </button> */}
+
+          <ThreedotButton
+            buttonOneText="Edit Board"
+            buttonTwoText="Delete Board"
+            buttonOneFn={() => {
+              console.log("Edit Board clicked");
+            }}
+            buttonTwoFn={() => {
+              console.log("Delete Board clicked");
+            }}
+          />
+
+          <ThreedotButton
+            buttonOneText="Edit Board"
+            buttonTwoText="Delete Board"
+            buttonOneFn={() => {
+              console.log("Edit Board clicked");
+            }}
+            buttonTwoFn={() => {
+              console.log("Delete Board clicked");
+            }}
+          />
         </div>
       </div>
     </header>
