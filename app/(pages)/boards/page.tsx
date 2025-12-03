@@ -1,22 +1,14 @@
 import Column from "@/app/components/column";
+import NewColumnAdd from "@/app/components/column/newColumnAdd.tsx";
 
 const Boards = () => {
   return (
-    <div className=" bg-red-300 w-full h-full flex overflow-x-scroll p-4">
-      <div className="flex h-full gap-6">
-        <Column />
-        <Column />
-        <Column />
-        <Column />
-        <Column />
-        <Column />
-        <Column />
-        <Column />
-        <Column />
+    <div className="w-full h-full gap-6 flex overflow-x-auto p-4">
+      <div className="flex h-max gap-6">
         <Column />
         <Column />
       </div>
-      <div className="min-w-70 w-full flex">new Column</div>
+      <NewColumnAdd />
     </div>
   );
 };

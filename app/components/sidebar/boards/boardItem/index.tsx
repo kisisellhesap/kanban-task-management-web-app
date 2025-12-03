@@ -5,10 +5,7 @@ import { useParams } from "next/navigation";
 const BoardItem = () => {
   const { name } = useParams();
 
-  console.log(name);
-
   const isActive = name === "platform%20launch";
-  console.log(isActive);
 
   return (
     <Link

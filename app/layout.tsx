@@ -6,6 +6,7 @@ import { ThemeProvider } from "next-themes";
 import Sidebar from "./components/sidebar";
 import Providers from "./redux/providers";
 import SidebarToggle from "./components/sidebar/sidebarToggle";
+import Modal from "./components/modal";
 
 const geistJakarta = Plus_Jakarta_Sans({
   variable: "--font-geist-jakarta",
@@ -32,10 +33,11 @@ export default function RootLayout({
             <SidebarToggle />
             <main className=" flex h-[calc(100vh-83.83px)]">
               <Sidebar />
-              <div className="bg-fuchsia-500 flex-1 overflow-hidden">
+              <div className=" flex-1 bg-LightGreyBG  dark:bg-VeryDarkGrey overflow-hidden">
                 {children}
               </div>
             </main>
+            {/* <Modal /> */}
           </ThemeProvider>
         </Providers>
       </body>

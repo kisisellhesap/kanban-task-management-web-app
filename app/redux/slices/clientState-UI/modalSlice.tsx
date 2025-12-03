@@ -1,7 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState: { isOpen: boolean } = {
+const chooseContentForModal = {
+  view_task: "view_task",
+  add_task: "add_task",
+  edit_task: "edit_task",
+  add_board: "add_board",
+  edit_board: "edit_board",
+};
+interface InitialStateProps {
+  isOpen: boolean;
+  modalContent: keyof typeof chooseContentForModal | null;
+}
+const initialState: InitialStateProps = {
   isOpen: false,
+  modalContent: null,
 };
 
 export const modalSlice = createSlice({

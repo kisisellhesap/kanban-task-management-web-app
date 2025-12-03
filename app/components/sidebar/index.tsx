@@ -17,7 +17,9 @@ const Sidebar = () => {
       variants={sidebarVariant}
       initial={"closed"}
       animate={isClose ? "closed" : "open"}
-      className=" bg-White w-75 h-[calc(100vh-83.83px)]  dark:bg-DarkGrey border-r border-Lines dark:border-LinesDark py-8 flex flex-col max-lg:fixed max-lg:left-0"
+      className={`bg-White w-75 h-[calc(100vh-83.83px)]  dark:bg-DarkGrey border-r  py-8 flex flex-col max-lg:fixed max-lg:left-0 ${
+        isClose ? "border-transparent" : "border-Lines dark:border-LinesDark"
+      }`}
     >
       <motion.div
         variants={sidebarChildVariant}
