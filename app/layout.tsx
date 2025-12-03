@@ -37,7 +37,7 @@ export default function RootLayout({
                 {children}
               </div>
             </main>
-            {/* <Modal /> */}
+            <Modal />
           </ThemeProvider>
         </Providers>
       </body>

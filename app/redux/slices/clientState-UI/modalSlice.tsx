@@ -1,12 +1,6 @@
+import { chooseContentForModal } from "@/app/constant/modalContentType";
 import { createSlice } from "@reduxjs/toolkit";
 
-const chooseContentForModal = {
-  view_task: "view_task",
-  add_task: "add_task",
-  edit_task: "edit_task",
-  add_board: "add_board",
-  edit_board: "edit_board",
-};
 interface InitialStateProps {
   isOpen: boolean;
   modalContent: keyof typeof chooseContentForModal | null;
@@ -20,6 +14,23 @@ export const modalSlice = createSlice({
   name: "modal",
   initialState,
   reducers: {
+    openModal: (state) => {
+      state.isOpen = true;
+    },
+    closeModal: (state) => {
+      state.isOpen = false;
+    },
+    toggleModal: (state) => {
+      state.isOpen = !state.isOpen;
+    },
+    changeModalContent: (
+      state,
+      action: {
+        payload: keyof typeof chooseContentForModal;
+      }
+    ) => {
+      state.modalContent = action.payload;
+    },
     // Eşzamanlı (sync) reducer'lar buraya gelir
   },
 
@@ -48,3 +59,5 @@ export const modalSlice = createSlice({
 });
 
 export default modalSlice.reducer;
+export const { openModal, closeModal, toggleModal, changeModalContent } =
+  modalSlice.actions;

@@ -42,7 +42,7 @@ const ThreedotButton = ({
       />
 
       {isDropdownOpen && (
-        <div className="p-4 w-48 h-[94px] bg-White dark:bg-VeryDarkGrey rounded-lg absolute top-20 right-0 flex flex-col items-start gap-4 text-body-l shadow-sm z-10">
+        <div className="p-4 w-48 h-[94px] bg-White dark:bg-VeryDarkGrey rounded-lg absolute top-20 right-0 flex flex-col items-start gap-4 text-body-l shadow-custom-light dark:shadow-sm dark:shadow-white/10 z-10">
           <button onClick={buttonOneFn} className="text-MediumGrey">
             {buttonOneText}
           </button>

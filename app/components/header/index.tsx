@@ -1,15 +1,40 @@
 "use client";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Logo from "./logo";
-import { RootState } from "@/app/redux/store";
+import { AppDispatch, RootState } from "@/app/redux/store";
 import Button from "../button";
 import { useMiniScreen } from "@/app/hooks/useBreakPointScreen";
 import { FaPlus } from "react-icons/fa6";
 import ThreedotButton from "../threedotButton";
+import {
+  changeModalContent,
+  openModal,
+} from "@/app/redux/slices/clientState-UI/modalSlice";
 
 const Header = () => {
   const { isClose } = useSelector((store: RootState) => store.sidebarReducer);
+  const dispatch = useDispatch<AppDispatch>();
   const isMiniScreen = useMiniScreen();
+
+  const addNewTask = () => {
+    dispatch(openModal());
+    dispatch(changeModalContent("add_task"));
+
+    console.log("Add New Task clicked");
+  };
+
+  const editBoard = () => {
+    dispatch(openModal());
+    dispatch(changeModalContent("edit_board"));
+
+    console.log("Edit Board clicked");
+  };
+  const deleteBoard = () => {
+    dispatch(openModal());
+    dispatch(changeModalContent("delete_board"));
+
+    console.log("Delete Board clicked");
+  };
   return (
     <header
       className={`flex w-full bg-White dark:bg-DarkGrey h-[83.83px]   ${
@@ -31,7 +56,7 @@ const Header = () => {
             : "border-transparent"
         } `}
       >
-        <h1 className="heading-xl max-md:heading-s text-black dark:text-White whitespace-nowrap">
+        <h1 className="heading-xl text-black dark:text-White whitespace-nowrap">
           Platform Launch
         </h1>
         <div className=" flex items-center justify-end gap-5 max-md:gap-2 w-full">
@@ -41,21 +66,14 @@ const Header = () => {
             text="+ Add New Task"
             width="164px"
             icon={<FaPlus className="w-3 h-3 hidden max-md:block" />}
+            onClick={addNewTask}
           />
-
-          {/* <button>
-            <BsThreeDotsVertical className="text-MediumGrey w-8 h-16" />
-          </button> */}
 
           <ThreedotButton
             buttonOneText="Edit Board"
             buttonTwoText="Delete Board"
-            buttonOneFn={() => {
-              console.log("Edit Board clicked");
-            }}
-            buttonTwoFn={() => {
-              console.log("Delete Board clicked");
-            }}
+            buttonOneFn={editBoard}
+            buttonTwoFn={deleteBoard}
           />
         </div>
       </div>

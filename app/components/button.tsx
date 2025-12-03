@@ -7,6 +7,7 @@ interface ButtonProps {
   text: string;
   width?: string;
   icon?: ReactNode;
+  onClick?: () => void;
 }
 const Button = ({
   type = "primary",
@@ -14,11 +15,13 @@ const Button = ({
   text,
   width = "255px",
   icon,
+  onClick,
 }: ButtonProps) => {
   return (
     <button
       className={`w-full flex max-md:w-12 max-md:h-8 items-center justify-center ${ButtonVariant.type[type]} ${ButtonVariant.size[size]}`}
       style={{ maxWidth: `${width}` }}
+      onClick={onClick}
     >
       {icon && icon}
       <span className="max-md:hidden">{text}</span>
