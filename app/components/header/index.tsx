@@ -58,17 +58,6 @@ const Header = () => {
               console.log("Delete Board clicked");
             }}
           />
-
-          <ThreedotButton
-            buttonOneText="Edit Board"
-            buttonTwoText="Delete Board"
-            buttonOneFn={() => {
-              console.log("Edit Board clicked");
-            }}
-            buttonTwoFn={() => {
-              console.log("Delete Board clicked");
-            }}
-          />
         </div>
       </div>
     </header>
