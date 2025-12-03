@@ -7,6 +7,14 @@ const Boards = () => {
         <Column />
         <Column />
         <Column />
+        <Column />
+        <Column />
+        <Column />
+        <Column />
+        <Column />
+        <Column />
+        <Column />
+        <Column />
       </div>
       <div className="min-w-70 w-full flex">new Column</div>
     </div>
