@@ -9,7 +9,7 @@ const Form = ({
 }) => {
   return (
     <form
-      className="w-[480px] rounded-md p-8 bg-White dark:bg-DarkGrey flex flex-col gap-6 shadow-custom-light shadow-custom-dark"
+      className="rounded-md p-8 bg-White dark:bg-DarkGrey flex flex-col gap-6 shadow-custom-light shadow-custom-dark"
       onSubmit={onSubmit}
     >
       {children}

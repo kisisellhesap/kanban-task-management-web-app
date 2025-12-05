@@ -1,21 +1,33 @@
 import Input from "../input";
+import TextArea from "../textarea";
 
-interface InputTextProps {
+interface FormContentProps {
   title: string;
   name: string;
   value: string;
   placeholder: string;
+  type?: "input" | "textarea";
 }
 
-const InputContent = ({ title, name, value, placeholder }: InputTextProps) => {
+const FormContent = ({
+  title,
+  name,
+  value,
+  placeholder,
+  type = "input",
+}: FormContentProps) => {
   return (
     <div className="flex flex-col gap-2">
       <label className="heading-m text-MediumGrey dark:text-White">
         {title}
       </label>
-      <Input name={name} value={value} placeholder={placeholder} />
+      {type === "textarea" ? (
+        <TextArea name={name} value={value} placeholder={placeholder} />
+      ) : (
+        <Input name={name} value={value} placeholder={placeholder} />
+      )}
     </div>
   );
 };
 
-export default InputContent;
+export default FormContent;

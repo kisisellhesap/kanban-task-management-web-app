@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { ButtonVariant } from "../constant/cssVariants/buttonVariants";
 
 interface ButtonProps {
+  buttonType?: "button" | "submit" | "reset";
   type: "primary" | "secondary" | "destructive";
   size: "L" | "S";
   text: string;
@@ -10,6 +11,7 @@ interface ButtonProps {
   onClick?: () => void;
 }
 const Button = ({
+  buttonType = "button",
   type = "primary",
   size = "L",
   text,
@@ -19,6 +21,7 @@ const Button = ({
 }: ButtonProps) => {
   return (
     <button
+      type={buttonType}
       className={`w-full flex  items-center  justify-center ${
         icon && "max-md:h-8  max-md:w-12"
       } ${ButtonVariant.type[type]} ${ButtonVariant.size[size]}`}

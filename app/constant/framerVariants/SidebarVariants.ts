@@ -26,7 +26,7 @@ export const sidebarChildVariant = {
 
 export const sidebarToggleVariant = {
   short: {
-    width: 56,
+    width: 53,
     backgroundColor: "#635fc7",
     color: "#fff",
     paddingLeft: 16,
@@ -70,5 +70,8 @@ export const sidebarToggleSpanVariant = {
   visible: {
     opacity: 1,
     display: "block",
+    transition: {
+      delay: 0.2,
+    },
   },
 };

@@ -12,7 +12,10 @@ const ModalContent = () => {
   );
 
   return (
-    <div onClick={(e) => e.stopPropagation()} className="mx-8 max-md:mx-3">
+    <div
+      onClick={(e) => e.stopPropagation()}
+      className="mx-8 max-md:mx-3 max-w-[480px] w-full"
+    >
       {(() => {
         switch (modalContent) {
           case chooseContentForModal.add_task:

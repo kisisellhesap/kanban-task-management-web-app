@@ -1,5 +1,8 @@
 import Button from "@/app/components/button";
-import { closeModal } from "@/app/redux/slices/clientState-UI/modalSlice";
+import {
+  changeModalContent,
+  closeModal,
+} from "@/app/redux/slices/clientState-UI/modalSlice";
 import { AppDispatch } from "@/app/redux/store";
 import { useDispatch } from "react-redux";
 

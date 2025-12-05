@@ -2,16 +2,20 @@
 import { TbLayoutBoardSplit } from "react-icons/tb";
 import ThemeToggle from "./themeToggle";
 import Boards from "./boards";
-import { useSelector } from "react-redux";
-import { RootState } from "@/app/redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/app/redux/store";
 import { motion } from "framer-motion";
 import {
   sidebarChildVariant,
   sidebarVariant,
 } from "@/app/constant/framerVariants/SidebarVariants";
+import {
+  changeModalContent,
+  openModal,
+} from "@/app/redux/slices/clientState-UI/modalSlice";
 const Sidebar = () => {
   const { isClose } = useSelector((store: RootState) => store.sidebarReducer);
-
+  const dispatch = useDispatch<AppDispatch>();
   return (
     <motion.aside
       variants={sidebarVariant}
@@ -28,7 +32,13 @@ const Sidebar = () => {
         className="flex flex-col h-screen "
       >
         <Boards />
-        <button className=" max-w-[276px] flex items-center gap-4 px-8 py-4 rounded-r-full text-MainPurple">
+        <button
+          className=" max-w-[276px] flex items-center gap-4 px-8 py-4 rounded-r-full text-MainPurple"
+          onClick={() => {
+            dispatch(openModal());
+            dispatch(changeModalContent("add_board"));
+          }}
+        >
           <TbLayoutBoardSplit className="w-6 h-6" />
           <span className=" heading-m ">+ Create New Board</span>
         </button>
