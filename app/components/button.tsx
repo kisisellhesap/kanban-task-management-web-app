@@ -19,12 +19,14 @@ const Button = ({
 }: ButtonProps) => {
   return (
     <button
-      className={`w-full flex max-md:w-12 max-md:h-8 items-center justify-center ${ButtonVariant.type[type]} ${ButtonVariant.size[size]}`}
+      className={`w-full flex  items-center  justify-center ${
+        icon && "max-md:h-8  max-md:w-12"
+      } ${ButtonVariant.type[type]} ${ButtonVariant.size[size]}`}
       style={{ maxWidth: `${width}` }}
       onClick={onClick}
     >
       {icon && icon}
-      <span className="max-md:hidden">{text}</span>
+      <span className={`${icon && "max-md:hidden"}`}>{text}</span>
     </button>
   );
 };

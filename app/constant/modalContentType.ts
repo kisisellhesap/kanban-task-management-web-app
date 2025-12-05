@@ -5,9 +5,5 @@ export const chooseContentForModal = {
   add_board: "add_board" /* boardForm */,
   edit_board: "edit_board" /* boardForm */,
   delete_board: "delete_board" /* areYouSure */,
+  view_task: "view_task" /* viewTask */,
 };
-
-/* 
-TaskForm - type
-BoardForm - type
-*/

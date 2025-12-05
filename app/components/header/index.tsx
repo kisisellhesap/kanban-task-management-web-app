@@ -69,12 +69,7 @@ const Header = () => {
             onClick={addNewTask}
           />
 
-          <ThreedotButton
-            buttonOneText="Edit Board"
-            buttonTwoText="Delete Board"
-            buttonOneFn={editBoard}
-            buttonTwoFn={deleteBoard}
-          />
+          <ThreedotButton type="board" />
         </div>
       </div>
     </header>

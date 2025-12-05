@@ -1,7 +1,8 @@
 export const ButtonVariant = {
   type: {
     primary: "bg-MainPurple hover:bg-HoverMainPurple text-White",
-    secondary: "bg-MainPurple/10 hover:bg-MainPurple/75 text-MainPurple",
+    secondary:
+      "bg-MainPurple/10 hover:bg-[#D8D7F1] text-MainPurple dark:bg-White dark:hover:bg-White",
     destructive: "bg-Red hover:bg-HoverRed text-White ",
   },
   size: {

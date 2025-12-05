@@ -12,7 +12,7 @@ const Modal = () => {
 
   return (
     <div
-      className="absolute inset-0 bg-black/50 backdrop-blur-sm z-10"
+      className="absolute inset-0 bg-black/50 backdrop-blur-sm z-10 flex items-center justify-center"
       onClick={() => dispatch(closeModal())}
     >
       <ModalContent />
