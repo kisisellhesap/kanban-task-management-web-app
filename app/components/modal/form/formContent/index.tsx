@@ -1,3 +1,4 @@
+import { ChangeEvent } from "react";
 import Input from "../input";
 import TextArea from "../textarea";
 
@@ -7,6 +8,8 @@ interface FormContentProps {
   value: string;
   placeholder: string;
   type?: "input" | "textarea";
+  onChangeName?: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChangeDescription?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 const FormContent = ({
@@ -15,6 +18,8 @@ const FormContent = ({
   value,
   placeholder,
   type = "input",
+  onChangeName,
+  onChangeDescription,
 }: FormContentProps) => {
   return (
     <div className="flex flex-col gap-2">
@@ -22,9 +27,19 @@ const FormContent = ({
         {title}
       </label>
       {type === "textarea" ? (
-        <TextArea name={name} value={value} placeholder={placeholder} />
+        <TextArea
+          name={name}
+          value={value}
+          placeholder={placeholder}
+          onChange={onChangeDescription}
+        />
       ) : (
-        <Input name={name} value={value} placeholder={placeholder} />
+        <Input
+          name={name}
+          value={value}
+          placeholder={placeholder}
+          onChange={onChangeName}
+        />
       )}
     </div>
   );

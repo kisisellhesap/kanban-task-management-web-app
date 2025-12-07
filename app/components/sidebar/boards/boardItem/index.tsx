@@ -1,15 +1,17 @@
 import Link from "next/link";
 import { TbLayoutBoardSplit } from "react-icons/tb";
 import { useParams } from "next/navigation";
-
-const BoardItem = () => {
-  const { name } = useParams();
-
-  const isActive = name === "platform%20launch";
+import { BoardWithId } from "@/app/types";
+interface BoardItemProps {
+  item: BoardWithId;
+}
+const BoardItem = ({ item }: BoardItemProps) => {
+  const { id } = useParams();
+  const isActive = id === item.id;
 
   return (
     <Link
-      href={"/boards/platform launch"}
+      href={`/boards/${item.id}`}
       className={`max-w-[276px] flex items-center gap-4 px-8 py-4 rounded-r-full text-MediumGrey  ${
         isActive
           ? "bg-MainPurple text-white"
@@ -17,7 +19,7 @@ const BoardItem = () => {
       }    `}
     >
       <TbLayoutBoardSplit className="w-6 h-6" />
-      <span className=" heading-m ">Platform Launch</span>
+      <span className="heading-m">{item.name}</span>
     </Link>
   );
 };

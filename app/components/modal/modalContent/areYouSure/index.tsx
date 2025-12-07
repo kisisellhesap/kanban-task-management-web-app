@@ -1,25 +1,33 @@
 import Button from "@/app/components/button";
-import {
-  changeModalContent,
-  closeModal,
-} from "@/app/redux/slices/clientState-UI/modalSlice";
-import { AppDispatch } from "@/app/redux/store";
-import { useDispatch } from "react-redux";
+import { closeModal } from "@/app/redux/slices/clientState-UI/modalSlice";
+import { deleteBoard } from "@/app/redux/slices/serverState-FETCH/board/actions";
+import { AppDispatch, RootState } from "@/app/redux/store";
+import { useParams, useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
 
 interface AreYouSureProps {
   type: "task" | "board";
 }
 
 const AreYouSure = ({ type }: AreYouSureProps) => {
+  const { boards } = useSelector((state: RootState) => state.boardReducer);
   const dispatch = useDispatch<AppDispatch>();
+  const router = useRouter();
+  const { id } = useParams();
+
+  const item = boards.find((item) => item.id === id);
   const deleteSomething = (type: string) => {
     if (type === "task") {
       console.log("deleted task");
     } else {
       console.log("deleted board");
+      if (item) {
+        dispatch(deleteBoard(item));
+      }
     }
 
     dispatch(closeModal());
+    router.push("/boards");
   };
   const cancelDelete = () => {
     console.log("cancelled delete");
@@ -37,7 +45,7 @@ const AreYouSure = ({ type }: AreYouSureProps) => {
       <p className="text-body-l text-MediumGrey">
         {type === "task"
           ? `Are you sure you want to delete the "${Task.name}" task and its subtasks? This action cannot be reversed.`
-          : `Are you sure you want to delete the "${Board.name}" board? This action will remove all columns and tasks and cannot be reversed.`}
+          : `Are you sure you want to delete the "${item?.name}" board? This action will remove all columns and tasks and cannot be reversed.`}
       </p>
       <div className="flex gap-4">
         <Button

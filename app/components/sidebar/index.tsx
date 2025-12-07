@@ -13,9 +13,11 @@ import {
   changeModalContent,
   openModal,
 } from "@/app/redux/slices/clientState-UI/modalSlice";
+import { useRouter } from "next/navigation";
 const Sidebar = () => {
   const { isClose } = useSelector((store: RootState) => store.sidebarReducer);
   const dispatch = useDispatch<AppDispatch>();
+  const router = useRouter();
   return (
     <motion.aside
       variants={sidebarVariant}
@@ -37,6 +39,7 @@ const Sidebar = () => {
           onClick={() => {
             dispatch(openModal());
             dispatch(changeModalContent("add_board"));
+            router.push("/boards");
           }}
         >
           <TbLayoutBoardSplit className="w-6 h-6" />

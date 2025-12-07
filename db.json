@@ -1,0 +1,34 @@
+{
+  "boards": [
+    {
+      "id": "9b54",
+      "name": "3",
+      "columns": [
+        {
+          "id": "ec431316-8fc4-447e-b93f-8352c0bd4b00",
+          "name": "Todo",
+          "tasks": [],
+          "color": "#000000"
+        },
+        {
+          "id": "906e9d6f-5d15-48f5-b04a-7b15d95400e8",
+          "name": "bişey mi yok",
+          "tasks": [],
+          "color": "#ea4343"
+        },
+        {
+          "id": "a5b56471-f254-489a-8175-be760fc2ce83",
+          "name": "sananeee lannnnnnnnnn",
+          "tasks": [],
+          "color": "#38857c"
+        },
+        {
+          "id": "9d949ca1-09b9-48ef-9204-9e23b7e7d088",
+          "name": "lsadkşalsdkaşsldkaşsdlk",
+          "tasks": [],
+          "color": "#000000"
+        }
+      ]
+    }
+  ]
+}

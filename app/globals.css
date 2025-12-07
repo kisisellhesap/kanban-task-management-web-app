@@ -52,8 +52,29 @@
   }
 }
 
-input[type="color"] {
-  block-size: 30px;
-  inline-size: 30px;
+/* input[type="color"] {
+  block-size: none;
+  inline-size: none;
+  width: 30px;
+  height: 30px;
+  border: none;
   border-radius: 888px;
+} */
+
+.color-picker-round::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.color-picker-round::-webkit-color-swatch {
+  border-radius: 50%; /* Yuvarlak renk örneği */
+  border: none;
+}
+
+/* Firefox için de benzer sıfırlamalar gerekebilir */
+.color-picker-round {
+  /* Varsayılan Firefox stillerini kaldırma */
+  -moz-appearance: none;
+  appearance: none;
+  padding: 0;
+  border: none;
 }
