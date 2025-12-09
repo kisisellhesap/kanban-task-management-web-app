@@ -15,7 +15,7 @@ const SubTasks = () => {
     <div className=" flex-1 flex">
       {item?.subtasks.length === 0 ? (
         <p className="text-MediumGrey heading-m w-full flex items-center justify-center">
-          Henüz bir task yok
+          Henüz bir subtask yok
         </p>
       ) : (
         <div className="flex flex-col gap-4 w-full">
