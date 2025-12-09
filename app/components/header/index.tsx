@@ -36,7 +36,6 @@ const Header = () => {
       toast.info("Select the board, or create it if you don't have one.");
     }
   };
-  console.log(form);
 
   return (
     <header

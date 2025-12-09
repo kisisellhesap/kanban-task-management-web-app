@@ -2,6 +2,7 @@
 import { useMiniScreen } from "@/app/hooks/useBreakPointScreen";
 import { useTheme } from "next-themes";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const Logo = () => {
@@ -26,14 +27,16 @@ const Logo = () => {
     : "/assets/logo-dark.svg";
 
   return (
-    <Image
-      src={logoSrc}
-      width={152}
-      height={25}
-      className="w-[152px]  h-[25px]"
-      alt="kanban logo"
-      priority
-    />
+    <Link href={"/boards"}>
+      <Image
+        src={logoSrc}
+        width={152}
+        height={25}
+        className="w-[152px]  h-[25px]"
+        alt="kanban logo"
+        priority
+      />
+    </Link>
   );
 };
 
