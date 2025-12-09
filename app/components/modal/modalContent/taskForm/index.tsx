@@ -9,8 +9,9 @@ import { resetForm, setDescription, setName, updateForm } from "@/app/redux/slic
 import { chooseContentForModal } from "@/app/constant/modalContentType";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
-import { useParams } from "next/navigation";
-import { addTask } from "@/app/redux/slices/taskSlice";
+import { useSearchParams } from "next/navigation";
+import { addTask, editTask } from "@/app/redux/slices/taskSlice";
+import { useRouter } from "next/navigation";
 
 const TaskForm = () => {
   const { modalContent } = useSelector((state: RootState) => state.modalReducer);
@@ -18,7 +19,8 @@ const TaskForm = () => {
   const { tasks } = useSelector((state: RootState) => state.taskReducer);
   const dispatch = useDispatch<AppDispatch>();
 
-  const { id } = useParams();
+  const id = useSearchParams().get("taskId");
+  const router = useRouter();
 
   const item = tasks.find((item) => item.id === id);
   const isEditMode = modalContent === "edit_task";
@@ -38,14 +40,16 @@ const TaskForm = () => {
     console.log("Form submitted", form);
 
     if (modalContent === chooseContentForModal.edit_task) {
+      dispatch(editTask(form));
       toast.success("Task updated succesfuly");
+      router.push(`/boards/${item?.boardId}`);
     }
     if (modalContent === chooseContentForModal.add_task) {
       dispatch(addTask(form));
       toast.success("Task created succesfuly");
     }
-    dispatch(resetForm());
     dispatch(closeModal());
+    dispatch(resetForm());
   };
 
   return (

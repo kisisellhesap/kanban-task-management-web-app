@@ -21,6 +21,7 @@ export interface Column {
   color: string;
 }
 export interface Subtask {
+  taskId: string;
   name: string;
   id: string;
   isCompleted: boolean;

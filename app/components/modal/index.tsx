@@ -7,7 +7,8 @@ import { resetForm as boardReset } from "@/app/redux/slices/boardFormSlice";
 import { resetForm as taskReset } from "@/app/redux/slices/taskFormSlice";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/navigation";
-
+import { motion } from "framer-motion";
+import { modalVariant } from "@/app/constant/framerVariants/SidebarVariants";
 const Modal = () => {
   const { isOpen } = useSelector((state: RootState) => state.modalReducer);
   const dispatch = useDispatch<AppDispatch>();
@@ -15,7 +16,10 @@ const Modal = () => {
   const { id } = useParams();
   if (isOpen) {
     return (
-      <div
+      <motion.div
+        variants={modalVariant}
+        initial={"hidden"}
+        animate={isOpen ? "visible" : "hidden"}
         className="absolute inset-0 bg-black/50 backdrop-blur-sm z-10 flex items-center justify-center"
         onClick={() => {
           dispatch(closeModal());
@@ -26,7 +30,7 @@ const Modal = () => {
         }}
       >
         <ModalContent />
-      </div>
+      </motion.div>
     );
   }
 };

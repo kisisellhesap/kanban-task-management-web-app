@@ -24,7 +24,7 @@ const Column = ({ column }: ColumnProps) => {
           style={{ backgroundColor: `${column.color}` }}
         ></div>
         <h3 className="heading-s text-MediumGrey">
-          {column.name} ({column.tasks.length})
+          {column.name} ({task.length})
         </h3>
       </div>
 

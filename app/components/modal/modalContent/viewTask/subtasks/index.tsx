@@ -1,21 +1,37 @@
+import { useSearchParams } from "next/navigation";
 import SubTaskItem from "./subtaskItem";
+import { RootState } from "@/app/redux/store";
+import { useSelector } from "react-redux";
 
 const SubTasks = () => {
-  return (
-    <div className="flex flex-col gap-4">
-      <h4 className="text-MediumGrey heading-m">Subtasks (2 of 3)</h4>
+  const params = useSearchParams().get("taskId");
 
-      <div className="flex flex-col gap-4 max-h-[140px] overflow-y-auto pr-5">
-        <SubTaskItem />
-        <SubTaskItem />
-        <SubTaskItem />
-        <SubTaskItem />
-        <SubTaskItem />
-        <SubTaskItem />
-        <SubTaskItem />
-        <SubTaskItem />
-        <SubTaskItem />
-      </div>
+  const { tasks } = useSelector((state: RootState) => state.taskReducer);
+
+  const item = tasks.find((task) => task.id === params);
+  const isCompleted = item?.subtasks.filter((sub) => sub.isCompleted === true);
+
+  console.log(item);
+
+  return (
+    <div className=" flex-1 flex">
+      {item?.subtasks.length === 0 ? (
+        <p className="text-MediumGrey heading-m w-full flex items-center justify-center">
+          Henüz bir task yok
+        </p>
+      ) : (
+        <div className="flex flex-col gap-4 w-full">
+          <h4 className="text-MediumGrey heading-m">
+            Subtasks ({isCompleted?.length} of {item?.subtasks.length})
+          </h4>
+
+          <div className="flex flex-col gap-4 max-h-[140px] overflow-y-auto pr-5 select-none">
+            {item?.subtasks.map((sub) => (
+              <SubTaskItem key={sub.id} sub={sub} />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

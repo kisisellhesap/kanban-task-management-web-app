@@ -13,12 +13,14 @@ interface CustomContentProps {
 
 const CustomContent = ({ type, childData }: CustomContentProps) => {
   const dispatch = useDispatch<AppDispatch>();
-  const { form } = useSelector((state: RootState) => state.boardFormReducer);
+  const { form: boardForm } = useSelector((state: RootState) => state.boardFormReducer);
+  const { form: taskForm } = useSelector((state: RootState) => state.taskFormReducer);
+
   const addColumnOrSubTask = () => {
     if (type === "board") {
       dispatch(
         addColumn({
-          boardId: form.id,
+          boardId: boardForm.id,
           id: crypto.randomUUID(),
           name: "",
           color: "#000000",
@@ -28,6 +30,7 @@ const CustomContent = ({ type, childData }: CustomContentProps) => {
     } else {
       dispatch(
         addSubTask({
+          taskId: taskForm.id,
           id: crypto.randomUUID(),
           name: "",
           isCompleted: false,
@@ -41,9 +44,7 @@ const CustomContent = ({ type, childData }: CustomContentProps) => {
         {type === "board" ? "Columns" : "Subtasks"}
       </label>
       <div className="flex flex-col gap-3 max-h-[94px] overflow-y-auto pr-5">
-        {childData.map((item, i) => (
-          <CustomItem key={i} item={item} type={type} />
-        ))}
+        {childData && childData.map((item, i) => <CustomItem key={i} item={item} type={type} />)}
       </div>
       <Button
         type="secondary"
