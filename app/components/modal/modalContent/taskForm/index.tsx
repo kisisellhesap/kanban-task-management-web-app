@@ -37,7 +37,6 @@ const TaskForm = () => {
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted", form);
 
     if (modalContent === chooseContentForModal.edit_task) {
       dispatch(editTask(form));

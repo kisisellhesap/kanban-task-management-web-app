@@ -11,7 +11,6 @@ const ViewTask = () => {
   const { tasks } = useSelector((state: RootState) => state.taskReducer);
 
   const item = tasks.find((task) => task.id === params);
-  console.log(item);
 
   return (
     <div className="rounded-md p-8 bg-White dark:bg-DarkGrey flex flex-col gap-6 shadow-custom-light shadow-custom-dark min-h-[400px]">

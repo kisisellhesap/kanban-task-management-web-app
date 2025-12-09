@@ -10,7 +10,6 @@ const NamePage = () => {
   const { id } = useParams();
 
   const item = boards.find((item) => item.id === id);
-  console.log(item);
   return (
     <div className="w-full h-full gap-6 flex overflow-x-auto p-4">
       {/* <div className="flex flex-col items-center gap-8">

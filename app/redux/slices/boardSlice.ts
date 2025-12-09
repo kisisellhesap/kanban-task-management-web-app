@@ -3,13 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 interface InitialStateProps {
   boards: Board[];
-  loading: boolean;
-  error: string | undefined;
 }
 const initialState: InitialStateProps = {
   boards: [],
-  loading: false,
-  error: undefined,
 };
 
 export const boardSlice = createSlice({

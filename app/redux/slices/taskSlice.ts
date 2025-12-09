@@ -3,13 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 interface InitialStateProps {
   tasks: Task[];
-  loading: boolean;
-  error: string | undefined;
 }
 const initialState: InitialStateProps = {
   tasks: [],
-  loading: false,
-  error: undefined,
 };
 
 export const taskSlice = createSlice({

@@ -11,8 +11,6 @@ const SubTasks = () => {
   const item = tasks.find((task) => task.id === params);
   const isCompleted = item?.subtasks.filter((sub) => sub.isCompleted === true);
 
-  console.log(item);
-
   return (
     <div className=" flex-1 flex">
       {item?.subtasks.length === 0 ? (

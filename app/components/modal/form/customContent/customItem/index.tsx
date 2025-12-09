@@ -12,7 +12,6 @@ interface CustomItemProps {
 }
 const CustomItem = ({ item, type }: CustomItemProps) => {
   const dispatch = useDispatch<AppDispatch>();
-  console.log(item);
   return (
     <div className="flex items-center gap-4">
       {type === "board" && (

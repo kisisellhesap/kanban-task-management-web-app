@@ -9,11 +9,6 @@ interface ColumnProps {
 const Column = ({ column }: ColumnProps) => {
   const { tasks } = useSelector((state: RootState) => state.taskReducer);
 
-  // console.log(boards, "boards");
-  // console.log(tasks, "tasks");
-  // console.log(id, "id");
-  // console.log(column, "column");
-
   const task = tasks.filter((task) => task.boardId === column.boardId && task.columnId === column.id);
 
   return (

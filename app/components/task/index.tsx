@@ -2,7 +2,6 @@
 import { changeModalContent, openModal } from "@/app/redux/slices/modalSlice";
 import { AppDispatch } from "@/app/redux/store";
 import { Task as TaskProp } from "@/app/types";
-import { subtle } from "crypto";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 
@@ -11,11 +10,7 @@ interface TaskProps {
 }
 const Task = ({ item }: TaskProps) => {
   const dispatch = useDispatch<AppDispatch>();
-  console.log(item);
-
   const isCompleted = item.subtasks.filter((subtask) => subtask.isCompleted === true);
-
-  console.log(isCompleted);
 
   const viewTask = () => {
     dispatch(openModal());

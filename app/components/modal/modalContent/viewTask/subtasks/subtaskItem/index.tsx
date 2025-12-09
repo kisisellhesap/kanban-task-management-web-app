@@ -15,7 +15,6 @@ const SubTaskItem = ({ sub }: SubTaskItemProps) => {
       className="rounded-sm bg-LightGreyBG dark:bg-VeryDarkGrey flex items-center gap-4 p-[13px] hover:bg-HoverMainPurple/25 dark:hover:bg-MainPurple/25 cursor-pointer"
       onClick={() => {
         dispatch(setSubTaskCompleted(sub));
-        console.log(sub);
       }}
     >
       <div
