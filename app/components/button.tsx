@@ -9,6 +9,7 @@ interface ButtonProps {
   width?: string;
   icon?: ReactNode;
   onClick?: () => void;
+  disabled?: boolean;
 }
 const Button = ({
   buttonType = "button",
@@ -18,10 +19,12 @@ const Button = ({
   width = "255px",
   icon,
   onClick,
+  disabled,
 }: ButtonProps) => {
   return (
     <button
       type={buttonType}
+      disabled={disabled}
       className={`w-full flex  items-center  justify-center ${
         icon && "max-md:h-8  max-md:w-12"
       } ${ButtonVariant.type[type]} ${ButtonVariant.size[size]}`}

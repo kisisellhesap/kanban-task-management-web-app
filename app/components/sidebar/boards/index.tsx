@@ -1,17 +1,10 @@
+import { RootState } from "@/app/redux/store";
+import { useSelector } from "react-redux";
 import BoardItem from "./boardItem";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/app/redux/store";
-import { useEffect } from "react";
-import { getBoard } from "@/app/redux/slices/serverState-FETCH/board/actions";
 
 const Boards = () => {
   const { boards } = useSelector((state: RootState) => state.boardReducer);
-
-  const dispatch = useDispatch<AppDispatch>();
-
-  useEffect(() => {
-    dispatch(getBoard());
-  }, [dispatch]);
+  console.log(boards);
   return (
     <div className="space-y-[19px]">
       <h3 className="px-[34px] heading-s text-MediumGrey ">

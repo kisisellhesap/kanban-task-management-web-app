@@ -1,8 +1,5 @@
 "use client";
-import {
-  changeModalContent,
-  openModal,
-} from "@/app/redux/slices/clientState-UI/modalSlice";
+import { changeModalContent, openModal } from "@/app/redux/slices/modalSlice";
 import { AppDispatch } from "@/app/redux/store";
 import { useDispatch } from "react-redux";
 

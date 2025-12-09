@@ -1,10 +1,10 @@
 import Button from "@/app/components/button";
 import CustomItem from "./customItem";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/app/redux/store";
-import { addColumn } from "@/app/redux/slices/serverState-FETCH/board/boardSlice";
 import { Column, Subtask } from "@/app/types";
-import { addSubtask } from "@/app/redux/slices/serverState-FETCH/task/taskSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/app/redux/store";
+import { addColumn } from "@/app/redux/slices/boardFormSlice";
+import { addSubTask } from "@/app/redux/slices/taskFormSlice";
 
 interface CustomContentProps {
   type: "board" | "task";
@@ -13,29 +13,28 @@ interface CustomContentProps {
 
 const CustomContent = ({ type, childData }: CustomContentProps) => {
   const dispatch = useDispatch<AppDispatch>();
-
+  const { form } = useSelector((state: RootState) => state.boardFormReducer);
   const addColumnOrSubTask = () => {
     if (type === "board") {
       dispatch(
         addColumn({
+          boardId: form.id,
           id: crypto.randomUUID(),
           name: "",
-          tasks: [],
           color: "#000000",
+          tasks: [],
         })
       );
     } else {
       dispatch(
-        addSubtask({
+        addSubTask({
           id: crypto.randomUUID(),
           name: "",
-          subTasks: [],
+          isCompleted: false,
         })
       );
     }
   };
-
-  console.log(childData);
   return (
     <div className="flex flex-col gap-4">
       <label className="heading-m text-MediumGrey dark:text-White">

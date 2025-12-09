@@ -1,5 +1,5 @@
 "use client";
-import { toggleSideBar } from "@/app/redux/slices/clientState-UI/sidebarSlice";
+import { toggleSideBar } from "@/app/redux/slices/sidebarSlice";
 import { AppDispatch, RootState } from "@/app/redux/store";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
@@ -19,9 +19,7 @@ const SidebarToggle = () => {
       variants={sidebarToggleVariant}
       initial={"short"}
       animate={isClose ? "short" : "long"}
-      whileHover={
-        isClose ? "shortHover" : theme === "dark" ? "darkHover" : "longHover"
-      }
+      whileHover={isClose ? "shortHover" : theme === "dark" ? "darkHover" : "longHover"}
       className="max-w-[276px] flex items-center gap-4 py-4 rounded-r-full fixed left-0 bottom-12  z-10"
       onClick={() => dispatch(toggleSideBar())}
     >
@@ -32,11 +30,7 @@ const SidebarToggle = () => {
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.7, opacity: 0 }}
         >
-          {isClose ? (
-            <FaRegEye className="w-5 h-5" />
-          ) : (
-            <FaRegEyeSlash className="w-5 h-5" />
-          )}
+          {isClose ? <FaRegEye className="w-5 h-5" /> : <FaRegEyeSlash className="w-5 h-5" />}
         </motion.div>
       </AnimatePresence>
 

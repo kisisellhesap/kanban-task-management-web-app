@@ -6,35 +6,38 @@ import Button from "../button";
 import { useMiniScreen } from "@/app/hooks/useBreakPointScreen";
 import { FaPlus } from "react-icons/fa6";
 import ThreedotButton from "../threedotButton";
-import {
-  changeModalContent,
-  openModal,
-} from "@/app/redux/slices/clientState-UI/modalSlice";
+import { changeModalContent, openModal } from "@/app/redux/slices/modalSlice";
+import { useParams } from "next/navigation";
+import { toast } from "react-toastify";
+import { setBoardIdForTask, setTaskId } from "@/app/redux/slices/taskFormSlice";
 
 const Header = () => {
   const { isClose } = useSelector((store: RootState) => store.sidebarReducer);
+
+  const { boards } = useSelector((store: RootState) => store.boardReducer);
+  const { form } = useSelector((store: RootState) => store.taskFormReducer);
+
+  const { id } = useParams();
+
+  const board = boards.find((item) => item.id === id);
+
   const dispatch = useDispatch<AppDispatch>();
   const isMiniScreen = useMiniScreen();
 
   const addNewTask = () => {
-    dispatch(openModal());
-    dispatch(changeModalContent("add_task"));
+    if (board) {
+      dispatch(openModal());
+      dispatch(changeModalContent("add_task"));
+      dispatch(setTaskId(crypto.randomUUID()));
+      dispatch(setBoardIdForTask(id));
 
-    console.log("Add New Task clicked");
+      console.log("Add New Task clicked");
+    } else {
+      toast.info("Select the board, or create it if you don't have one.");
+    }
   };
+  console.log(form);
 
-  const editBoard = () => {
-    dispatch(openModal());
-    dispatch(changeModalContent("edit_board"));
-
-    console.log("Edit Board clicked");
-  };
-  const deleteBoard = () => {
-    dispatch(openModal());
-    dispatch(changeModalContent("delete_board"));
-
-    console.log("Delete Board clicked");
-  };
   return (
     <header
       className={`flex w-full bg-White dark:bg-DarkGrey h-[83.83px]   ${
@@ -56,9 +59,7 @@ const Header = () => {
             : "border-transparent"
         } `}
       >
-        <h1 className="heading-xl text-black dark:text-White whitespace-nowrap">
-          Platform Launch
-        </h1>
+        <h1 className="heading-xl text-black dark:text-White whitespace-nowrap">{board?.name}</h1>
         <div className=" flex items-center justify-end gap-5 max-md:gap-2 w-full">
           <Button
             type="primary"

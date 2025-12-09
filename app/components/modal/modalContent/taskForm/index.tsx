@@ -4,31 +4,48 @@ import CustomContent from "../../form/customContent";
 import Button from "@/app/components/button";
 import FormContent from "../../form/formContent";
 import CurrentStatus from "../../currentStatus";
-import { ChangeEvent } from "react";
-import {
-  setDescription,
-  setName,
-} from "@/app/redux/slices/serverState-FETCH/task/taskSlice";
+import { closeModal } from "@/app/redux/slices/modalSlice";
+import { resetForm, setDescription, setName, updateForm } from "@/app/redux/slices/taskFormSlice";
+import { chooseContentForModal } from "@/app/constant/modalContentType";
+import { toast } from "react-toastify";
+import { useEffect } from "react";
+import { useParams } from "next/navigation";
+import { addTask } from "@/app/redux/slices/taskSlice";
 
 const TaskForm = () => {
-  const { modalContent } = useSelector(
-    (state: RootState) => state.modalReducer
-  );
-  const { taskForm } = useSelector((state: RootState) => state.taskReducer);
-
+  const { modalContent } = useSelector((state: RootState) => state.modalReducer);
+  const { form } = useSelector((state: RootState) => state.taskFormReducer);
+  const { tasks } = useSelector((state: RootState) => state.taskReducer);
   const dispatch = useDispatch<AppDispatch>();
 
+  const { id } = useParams();
+
+  const item = tasks.find((item) => item.id === id);
   const isEditMode = modalContent === "edit_task";
+
+  useEffect(() => {
+    if (modalContent === chooseContentForModal.edit_task) {
+      dispatch(
+        updateForm({
+          ...item,
+        })
+      );
+    }
+  }, [modalContent, dispatch, item]);
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted", taskForm);
-  };
-  const setNameFn = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(setName(e.target.value));
-  };
-  const setDescriptionFn = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    dispatch(setDescription(e.target.value));
+    console.log("Form submitted", form);
+
+    if (modalContent === chooseContentForModal.edit_task) {
+      toast.success("Task updated succesfuly");
+    }
+    if (modalContent === chooseContentForModal.add_task) {
+      dispatch(addTask(form));
+      toast.success("Task created succesfuly");
+    }
+    dispatch(resetForm());
+    dispatch(closeModal());
   };
 
   return (
@@ -36,29 +53,31 @@ const TaskForm = () => {
       className="rounded-md p-8 bg-White dark:bg-DarkGrey flex flex-col gap-6 shadow-custom-light shadow-custom-dark"
       onSubmit={submitHandler}
     >
-      <h4 className="text-black dark:text-White heading-xl">
-        {isEditMode ? "Edit Task" : "Add New Task"}
-      </h4>
+      <h4 className="text-black dark:text-White heading-xl">{isEditMode ? "Edit Task" : "Add New Task"}</h4>
 
       <FormContent
         title="Name"
         name={"name"}
-        value={taskForm.name}
+        value={form.name}
         placeholder={"e.g. Take coffee break"}
-        onChangeName={setNameFn}
+        onChangeName={(e) => {
+          dispatch(setName(e.target.value));
+        }}
       />
 
       <FormContent
         type="textarea"
         title="Description"
         name={"description"}
-        value={taskForm.description}
+        value={form.description}
         placeholder={
           "e.g. It’s always good to take a break. This 15 minute break will recharge the batteries a little."
         }
-        onChangeDescription={setDescriptionFn}
+        onChangeDescription={(e) => {
+          dispatch(setDescription(e.target.value));
+        }}
       />
-      <CustomContent type="task" childData={taskForm.subtasks} />
+      <CustomContent type="task" childData={form.subtasks} />
 
       <CurrentStatus />
       <Button

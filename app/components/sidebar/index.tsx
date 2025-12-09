@@ -5,15 +5,10 @@ import Boards from "./boards";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/app/redux/store";
 import { motion } from "framer-motion";
-import {
-  sidebarChildVariant,
-  sidebarVariant,
-} from "@/app/constant/framerVariants/SidebarVariants";
-import {
-  changeModalContent,
-  openModal,
-} from "@/app/redux/slices/clientState-UI/modalSlice";
+import { sidebarChildVariant, sidebarVariant } from "@/app/constant/framerVariants/SidebarVariants";
+import { changeModalContent, openModal } from "@/app/redux/slices/modalSlice";
 import { useRouter } from "next/navigation";
+import { setBoardId } from "@/app/redux/slices/boardFormSlice";
 const Sidebar = () => {
   const { isClose } = useSelector((store: RootState) => store.sidebarReducer);
   const dispatch = useDispatch<AppDispatch>();
@@ -39,6 +34,7 @@ const Sidebar = () => {
           onClick={() => {
             dispatch(openModal());
             dispatch(changeModalContent("add_board"));
+            dispatch(setBoardId(crypto.randomUUID()));
             router.push("/boards");
           }}
         >

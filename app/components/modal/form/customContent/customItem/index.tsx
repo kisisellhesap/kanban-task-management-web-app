@@ -3,16 +3,8 @@ import Input from "../../input";
 import { FaXmark } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/app/redux/store";
-import {
-  deleteColumn,
-  setColumnColor,
-  setColumnName,
-} from "@/app/redux/slices/serverState-FETCH/board/boardSlice";
-import { ChangeEvent } from "react";
-import {
-  deleteSubtask,
-  setsubtaskName,
-} from "@/app/redux/slices/serverState-FETCH/task/taskSlice";
+import { deleteColumn, setColumnColor, setColumnName } from "@/app/redux/slices/boardFormSlice";
+import { deleteSubTask, setSubTaskName } from "@/app/redux/slices/taskFormSlice";
 
 interface CustomItemProps {
   item: Column | Subtask;
@@ -20,53 +12,22 @@ interface CustomItemProps {
 }
 const CustomItem = ({ item, type }: CustomItemProps) => {
   const dispatch = useDispatch<AppDispatch>();
-
-  const setNameColumnOrSubTask = (e: ChangeEvent<HTMLInputElement>) => {
-    if (type === "board") {
-      dispatch(
-        setColumnName({
-          columnId: item.id,
-          newName: e.target.value,
-        })
-      );
-    } else {
-      dispatch(
-        setsubtaskName({
-          subtaskId: item.id,
-          newName: e.target.value,
-        })
-      );
-    }
-  };
-  const deleteColumnOrSubTask = () => {
-    if (type === "board") {
-      dispatch(deleteColumn(item.id));
-    } else {
-      dispatch(deleteSubtask(item.id));
-    }
-  };
-
-  const handleColorChange = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
-    if (e.target.value) {
-      console.log("true");
-    } else {
-      console.log("false");
-    }
-    dispatch(
-      setColumnColor({
-        columnId: item.id,
-        columnColor: e.target.value,
-      })
-    );
-  };
+  console.log(item);
   return (
     <div className="flex items-center gap-4">
       {type === "board" && (
         <input
           type="color"
           value={item.color}
-          onChange={handleColorChange}
+          onChange={(e) => {
+            console.log(e.target.value);
+            dispatch(
+              setColumnColor({
+                color: e.target.value,
+                id: item.id,
+              })
+            );
+          }}
           className="w-10 h-10"
         />
       )}
@@ -75,9 +36,34 @@ const CustomItem = ({ item, type }: CustomItemProps) => {
         name="name"
         value={item.name}
         placeholder="we.g. Web Design"
-        onChange={setNameColumnOrSubTask}
+        onChange={(e) => {
+          if (type === "board") {
+            dispatch(
+              setColumnName({
+                name: e.target.value,
+                id: item.id,
+              })
+            );
+          } else {
+            dispatch(
+              setSubTaskName({
+                name: e.target.value,
+                id: item.id,
+              })
+            );
+          }
+        }}
       />
-      <button type="button" onClick={deleteColumnOrSubTask}>
+      <button
+        type="button"
+        onClick={() => {
+          if (type === "board") {
+            dispatch(deleteColumn(item.id));
+          } else {
+            dispatch(deleteSubTask(item.id));
+          }
+        }}
+      >
         <FaXmark className="text-MediumGrey w-6 h-6" />
       </button>
     </div>

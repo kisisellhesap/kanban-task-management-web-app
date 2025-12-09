@@ -7,6 +7,7 @@ import Sidebar from "./components/sidebar";
 import Providers from "./redux/providers";
 import SidebarToggle from "./components/sidebar/sidebarToggle";
 import Modal from "./components/modal";
+import { ToastContainer } from "react-toastify";
 
 const geistJakarta = Plus_Jakarta_Sans({
   variable: "--font-geist-jakarta",
@@ -38,6 +39,11 @@ export default function RootLayout({
               </div>
             </main>
             <Modal />
+            <ToastContainer
+              position="bottom-right"
+              autoClose={2000}
+              theme="light"
+            />
           </ThemeProvider>
         </Providers>
       </body>

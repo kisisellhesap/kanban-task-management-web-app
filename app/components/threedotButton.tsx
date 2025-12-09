@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { AppDispatch } from "../redux/store";
-import { useDispatch } from "react-redux";
-import {
-  changeModalContent,
-  openModal,
-} from "../redux/slices/clientState-UI/modalSlice";
+import { AppDispatch, RootState } from "../redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { changeModalContent, openModal } from "../redux/slices/modalSlice";
+import { useParams } from "next/navigation";
+import { toast } from "react-toastify";
 
 interface ThreedotButtonProps {
   type: "task" | "board";
@@ -14,6 +13,10 @@ const ThreedotButton = ({ type }: ThreedotButtonProps) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  const { boards } = useSelector((store: RootState) => store.boardReducer);
+  const { id } = useParams();
+
+  const board = boards.find((item) => item.id === id);
   const dispatch = useDispatch<AppDispatch>();
 
   const toggleDropdown = () => {
@@ -67,12 +70,31 @@ const ThreedotButton = ({ type }: ThreedotButtonProps) => {
       {isDropdownOpen && (
         <div className="p-4 w-48 h-[94px] bg-White dark:bg-VeryDarkGrey rounded-lg absolute top-20 right-0 flex flex-col items-start gap-4 text-body-l shadow-custom-light shadow-custom-dark z-10">
           <button
-            onClick={() => editSomething(type)}
+            onClick={() => {
+              if (board) {
+                editSomething(type);
+              } else {
+                toast.info(
+                  "Select the board, or create it if you don't have one."
+                );
+              }
+            }}
             className="text-MediumGrey"
           >
             {type === "task" ? "Edit Task" : "Edit Board"}
           </button>
-          <button onClick={() => deleteSomething(type)} className="text-Red">
+          <button
+            onClick={() => {
+              if (board) {
+                deleteSomething(type);
+              } else {
+                toast.info(
+                  "Select the board, or create it if you don't have one."
+                );
+              }
+            }}
+            className="text-Red"
+          >
             {type === "task" ? "Delete Task" : "Delete Board"}
           </button>
         </div>

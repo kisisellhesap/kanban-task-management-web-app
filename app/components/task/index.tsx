@@ -1,13 +1,15 @@
 "use client";
-import {
-  changeModalContent,
-  openModal,
-} from "@/app/redux/slices/clientState-UI/modalSlice";
+import { changeModalContent, openModal } from "@/app/redux/slices/modalSlice";
 import { AppDispatch } from "@/app/redux/store";
+import { Task as TaskProp } from "@/app/types";
 import { useDispatch } from "react-redux";
 
-const Task = () => {
+interface TaskProps {
+  item: TaskProp;
+}
+const Task = ({ item }: TaskProps) => {
   const dispatch = useDispatch<AppDispatch>();
+  console.log(item);
 
   const viewTask = () => {
     dispatch(openModal());
@@ -19,11 +21,9 @@ const Task = () => {
       onClick={viewTask}
     >
       <p className="heading-m text-black dark:text-White line-clamp-1 group-hover:text-MainPurple">
-        Build UI for onboarding flow
+        {item.name}
       </p>
-      <span className="font-bold text-[12px] text-MediumGrey">
-        1 of 3 substasks
-      </span>
+      <span className="font-bold text-[12px] text-MediumGrey">1 of 3 substasks</span>
     </div>
   );
 };
