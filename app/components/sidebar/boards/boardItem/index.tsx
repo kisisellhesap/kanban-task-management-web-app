@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { TbLayoutBoardSplit } from "react-icons/tb";
 import { useParams } from "next/navigation";
-import { BoardWithId } from "@/app/types";
+import { Board } from "@/app/types";
 interface BoardItemProps {
-  item: BoardWithId;
+  item: Board;
 }
 const BoardItem = ({ item }: BoardItemProps) => {
   const { id } = useParams();
