@@ -31,19 +31,12 @@ export default function RootLayout({
         <Providers>
           <ThemeProvider attribute="class" defaultTheme="light">
             <Header />
-            <SidebarToggle />
             <main className=" flex h-[calc(100vh-83.83px)]">
               <Sidebar />
-              <div className=" flex-1 bg-LightGreyBG  dark:bg-VeryDarkGrey overflow-hidden">
-                {children}
-              </div>
+              <div className=" flex-1 bg-LightGreyBG  dark:bg-VeryDarkGrey overflow-hidden">{children}</div>
             </main>
             <Modal />
-            <ToastContainer
-              position="bottom-right"
-              autoClose={2000}
-              theme="light"
-            />
+            <ToastContainer position="bottom-right" autoClose={2000} theme="light" />
           </ThemeProvider>
         </Providers>
       </body>

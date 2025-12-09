@@ -9,6 +9,7 @@ import { sidebarChildVariant, sidebarVariant } from "@/app/constant/framerVarian
 import { changeModalContent, openModal } from "@/app/redux/slices/modalSlice";
 import { useRouter } from "next/navigation";
 import { setBoardId } from "@/app/redux/slices/boardFormSlice";
+import SidebarToggle from "./sidebarToggle";
 const Sidebar = () => {
   const { isClose } = useSelector((store: RootState) => store.sidebarReducer);
   const dispatch = useDispatch<AppDispatch>();
@@ -43,6 +44,7 @@ const Sidebar = () => {
         </button>
 
         <ThemeToggle />
+        <SidebarToggle />
       </motion.div>
     </motion.aside>
   );
