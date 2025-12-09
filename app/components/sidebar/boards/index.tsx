@@ -5,10 +5,10 @@ import BoardItem from "./boardItem";
 const Boards = () => {
   const { boards } = useSelector((state: RootState) => state.boardReducer);
   return (
-    <div className="space-y-[19px]">
+    <div className="space-y-[19px] ">
       <h3 className="px-[34px] heading-s text-MediumGrey ">ALL BOARDS ({boards.length})</h3>
 
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1 max-h-[300px] overflow-y-auto">
         {boards.map((item) => (
           <BoardItem key={item.id} item={item} />
         ))}

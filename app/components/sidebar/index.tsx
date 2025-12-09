@@ -44,7 +44,6 @@ const Sidebar = () => {
         </button>
 
         <ThemeToggle />
-        <SidebarToggle />
       </motion.div>
     </motion.aside>
   );
